@@ -15,6 +15,11 @@ public class Start
 		final Player player = new Player();
 		final MyPanel panel = new MyPanel(player);
 
+		final KeyControls keyControls = new KeyControls(player);
+
+		panel.addKeyListener(keyControls);
+		// panel.addMouseListener(controls);
+
 		window.add(panel);
 		window.setVisible(true);
 	}

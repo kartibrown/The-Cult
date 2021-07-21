@@ -24,6 +24,8 @@ public class MyPanel extends JPanel
 	{
 		this.setBackground(Color.DARK_GRAY);
 		this.setLayout(new GridBagLayout());
+		this.setFocusable(true);
+		this.requestFocus();
 
 		this.player = player;
 
@@ -32,7 +34,6 @@ public class MyPanel extends JPanel
 			@Override
 			public void actionPerformed(final ActionEvent e)
 			{
-
 				repaint();
 			}
 		});
@@ -45,9 +46,7 @@ public class MyPanel extends JPanel
 		{
 			@Override
 			public void run()
-			{
-				timer.start();
-			}
+			{ timer.start(); }
 		};
 		t1.start();
 

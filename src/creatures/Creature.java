@@ -12,45 +12,22 @@ public abstract class Creature
 	protected int speed, weight;
 	protected int x, y, w, h;
 
-	protected static enum Direction
+	public static enum Direction
 	{
-		FORWARD, FORWARD_RIGHT, FORWARD_LEFT, BACKWARD, BACKWARD_RIGHT,
-		BACKWARD_LEFT, RIGHT, LEFT, NULL
+		FORWARD, BACKWARD, RIGHT, LEFT, NULL
 	}
 
-	protected Direction direction;
+	protected Direction dirX, dirY;
 
 	public Creature()
-	{}
+	{ dirX = dirY = Direction.NULL; }
 
 	public abstract void render(final Graphics2D g);
 
 	public void move()
 	{
-		switch (direction)
+		switch (dirX)
 		{
-		case FORWARD:
-			y += speed;
-			break;
-		case FORWARD_RIGHT:
-			x += speed;
-			y += speed;
-			break;
-		case FORWARD_LEFT:
-			x -= speed;
-			y += speed;
-			break;
-		case BACKWARD:
-			y -= speed;
-			break;
-		case BACKWARD_RIGHT:
-			x += speed;
-			y -= speed;
-			break;
-		case BACKWARD_LEFT:
-			x -= speed;
-			y -= speed;
-			break;
 		case RIGHT:
 			x += speed;
 			break;
@@ -59,6 +36,20 @@ public abstract class Creature
 			break;
 		case NULL:
 			break;
+		default:
+			break;
+		}
+
+		switch (dirY)
+		{
+		case FORWARD:
+			y -= speed;
+			break;
+		case BACKWARD:
+			y += speed;
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -66,8 +57,11 @@ public abstract class Creature
 	 * GETTERS & SETTERS
 	 */
 
-	public final void setDirection(final Direction direction)
-	{ this.direction = direction; }
+	public final void setDirectionX(final Direction dirX)
+	{ this.dirX = dirX; }
+	
+	public final void setDirectionY(final Direction dirY)
+	{ this.dirY = dirY; }
 
 	public final Color getColor()
 	{ return color; }
