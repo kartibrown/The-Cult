@@ -3,6 +3,7 @@ package creatures;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Point;
 
 import controls.Mouse;
 
@@ -24,8 +25,8 @@ public class Player extends Human
 	@Override
 	public void render(final Graphics2D g)
 	{
-		final double r = Math
-				.atan2(Mouse.getLocation().x, Mouse.getLocation().y);
+		final Point mLoc = Mouse.getLocation();
+		final double r = Math.atan2(mLoc.x, mLoc.y);
 
 		g.rotate(r, x - w / 2, y - h / 2);
 		g.setColor(color);

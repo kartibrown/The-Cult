@@ -1,15 +1,22 @@
 package controls;
 
-import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class Mouse implements MouseListener
+public class Mouse implements MouseListener, MouseMotionListener
 {
-
+	private static Point location;
+	
 	public Mouse()
-	{}
+	{
+		location = new Point();
+	}
+
+	/*
+	 * Mouse Listener
+	 */
 
 	@Override
 	public void mouseClicked(final MouseEvent e)
@@ -32,9 +39,23 @@ public class Mouse implements MouseListener
 	{}
 
 	/*
+	 * Mouse Motion Listener
+	 */
+
+	@Override
+	public void mouseDragged(final MouseEvent e)
+	{}
+
+	@Override
+	public void mouseMoved(final MouseEvent e)
+	{ location = e.getPoint(); }
+
+	/*
 	 * GETTERS & SETTERS
 	 */
 
 	public static final Point getLocation()
-	{ return MouseInfo.getPointerInfo().getLocation(); }
+	{
+		return location;
+	}
 }

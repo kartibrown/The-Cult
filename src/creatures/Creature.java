@@ -3,6 +3,8 @@ package creatures;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import controls.Mouse;
+
 public abstract class Creature
 {
 	protected String name;

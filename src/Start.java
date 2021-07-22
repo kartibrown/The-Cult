@@ -16,9 +16,11 @@ public class Start
 
 		final Player player = new Player(window.getContentPane().getSize());
 		final MyPanel panel = new MyPanel(player);
-
 		panel.addKeyListener(new Keyboard(player));
-		panel.addMouseListener(new Mouse());
+		
+		final Mouse mouse = new Mouse();
+		panel.addMouseListener(mouse);
+		panel.addMouseMotionListener(mouse);
 
 		window.add(panel);
 		window.setVisible(true);
