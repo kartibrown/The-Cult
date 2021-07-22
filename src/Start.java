@@ -1,5 +1,7 @@
 import java.awt.Dimension;
 
+import controls.Keyboard;
+import controls.Mouse;
 import creatures.Player;
 import graphics.MyPanel;
 import graphics.MyWindow;
@@ -12,13 +14,11 @@ public class Start
 				"The Cult", new Dimension(800, 600)
 		);
 
-		final Player player = new Player();
+		final Player player = new Player(window.getContentPane().getSize());
 		final MyPanel panel = new MyPanel(player);
 
-		final KeyControls keyControls = new KeyControls(player);
-
-		panel.addKeyListener(keyControls);
-		// panel.addMouseListener(controls);
+		panel.addKeyListener(new Keyboard(player));
+		panel.addMouseListener(new Mouse());
 
 		window.add(panel);
 		window.setVisible(true);

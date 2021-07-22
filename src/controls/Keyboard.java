@@ -1,14 +1,15 @@
+package controls;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import creatures.Creature.Direction;
 import creatures.Player;
 
-public class KeyControls implements KeyListener
+public class Keyboard implements KeyListener
 {
 	private final Player player;
 
-	public KeyControls(final Player player)
+	public Keyboard(final Player player)
 	{ this.player = player; }
 
 	@Override
