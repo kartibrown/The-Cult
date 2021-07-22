@@ -1,4 +1,5 @@
 package controls;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -19,20 +20,23 @@ public class Keyboard implements KeyListener
 	@Override
 	public synchronized void keyPressed(final KeyEvent e)
 	{
-		if (e.getKeyCode() == KeyEvent.VK_UP)
+		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W)
 		{
 			player.setDirectionY(Direction.FORWARD);
 		}
-		else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+		else if (e.getKeyCode() == KeyEvent.VK_DOWN
+				|| e.getKeyCode() == KeyEvent.VK_S)
 		{
 			player.setDirectionY(Direction.BACKWARD);
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT
+				|| e.getKeyCode() == KeyEvent.VK_D)
 		{
 			player.setDirectionX(Direction.RIGHT);
 		}
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+		else if (e.getKeyCode() == KeyEvent.VK_LEFT
+				|| e.getKeyCode() == KeyEvent.VK_A)
 		{
 			player.setDirectionX(Direction.LEFT);
 		}
@@ -42,13 +46,17 @@ public class Keyboard implements KeyListener
 	public synchronized void keyReleased(final KeyEvent e)
 	{
 		if (e.getKeyCode() == KeyEvent.VK_UP
-				|| e.getKeyCode() == KeyEvent.VK_DOWN)
+				|| e.getKeyCode() == KeyEvent.VK_DOWN
+				|| e.getKeyCode() == KeyEvent.VK_W
+				|| e.getKeyCode() == KeyEvent.VK_S)
 		{
 			player.setDirectionY(Direction.NULL);
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT
-				|| e.getKeyCode() == KeyEvent.VK_LEFT)
+				|| e.getKeyCode() == KeyEvent.VK_LEFT
+				|| e.getKeyCode() == KeyEvent.VK_D
+				|| e.getKeyCode() == KeyEvent.VK_A)
 		{
 			player.setDirectionX(Direction.NULL);
 		}
