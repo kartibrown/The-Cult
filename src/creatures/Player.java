@@ -9,6 +9,8 @@ import controls.Mouse;
 
 public class Player extends Human
 {
+	private final Point centerScreen;
+
 	public Player(final Dimension contentPaneSize)
 	{
 		name = "Player";
@@ -17,18 +19,23 @@ public class Player extends Human
 		speed = 2;
 		speedOffset = speed / 2;
 		weight = 0;
-		x = contentPaneSize.width / 2;
-		y = contentPaneSize.height / 2;
-		w = h = 20;
+		w = h = 100;
+		x = contentPaneSize.width / 2 - w / 2;
+		y = contentPaneSize.height / 2 - h / 2;
+
+		centerScreen = new Point(
+				contentPaneSize.width / 2, contentPaneSize.height / 2
+		);
 	}
 
 	@Override
 	public void render(final Graphics2D g)
 	{
 		final Point mLoc = Mouse.getLocation();
-		final double r = Math.atan2(mLoc.x, mLoc.y);
+		double r = -Math.atan2(mLoc.x - x, mLoc.y - y);
+		r = Math.toDegrees(r) + 180;
 
-		g.rotate(r, x - w / 2, y - h / 2);
+		g.rotate(Math.toRadians(r), centerScreen.x, centerScreen.y);
 		g.setColor(color);
 		g.fillOval((int) x, (int) y, (int) w, (int) h);
 		g.setColor(Color.BLACK);
