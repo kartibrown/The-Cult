@@ -9,8 +9,8 @@ public abstract class Creature
 	protected int years;
 	protected Color color;
 
-	protected int speed, weight;
-	protected int x, y, w, h;
+	protected float speed, speedOffset, weight;
+	protected float x, y, w, h;
 
 	public static enum Direction
 	{
@@ -24,32 +24,65 @@ public abstract class Creature
 
 	public abstract void render(final Graphics2D g);
 
+	public abstract void physics();
+
 	public void move()
 	{
-		switch (dirX)
+		if (!dirX.equals(Direction.NULL) && !dirY.equals(Direction.NULL))
 		{
-		case RIGHT:
-			x += speed;
-			break;
-		case LEFT:
-			x -= speed;
-			break;
-		case NULL:
-			break;
-		default:
-			break;
-		}
+			switch (dirX)
+			{
+			case RIGHT:
+				x += speed / 1.1;
+				break;
+			case LEFT:
+				x -= speed / 1.1;
+				break;
+			case NULL:
+				break;
+			default:
+				break;
+			}
 
-		switch (dirY)
+			switch (dirY)
+			{
+			case FORWARD:
+				y -= speed / 1.1;
+				break;
+			case BACKWARD:
+				y += speed / 1.1;
+				break;
+			default:
+				break;
+			}
+		}
+		else
 		{
-		case FORWARD:
-			y -= speed;
-			break;
-		case BACKWARD:
-			y += speed;
-			break;
-		default:
-			break;
+			switch (dirX)
+			{
+			case RIGHT:
+				x += speed;
+				break;
+			case LEFT:
+				x -= speed;
+				break;
+			case NULL:
+				break;
+			default:
+				break;
+			}
+
+			switch (dirY)
+			{
+			case FORWARD:
+				y -= speed;
+				break;
+			case BACKWARD:
+				y += speed;
+				break;
+			default:
+				break;
+			}
 		}
 	}
 
@@ -59,7 +92,7 @@ public abstract class Creature
 
 	public final void setDirectionX(final Direction dirX)
 	{ this.dirX = dirX; }
-	
+
 	public final void setDirectionY(final Direction dirY)
 	{ this.dirY = dirY; }
 

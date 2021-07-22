@@ -53,6 +53,7 @@ public class MyPanel extends JPanel
 		super.paintComponent(g);
 		final Graphics2D g2 = (Graphics2D) g;
 		player.render(g2);
+		player.physics();
 		player.move();
 	}
 }
