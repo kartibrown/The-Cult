@@ -32,9 +32,10 @@ public class Player extends Human
 	public void render(final Graphics2D g)
 	{
 		final Point mLoc = Mouse.getLocation();
-		double r = Math.atan2(y - mLoc.y, x - mLoc.x) - Math.PI / 2;
+		double r = Math.atan2(centerScreen.y - mLoc.y, centerScreen.x - mLoc.x)
+				- Math.PI / 2;
 
-		g.rotate(r, centerScreen.x, centerScreen.y);
+		g.rotate(r, x + w / 2, y + h / 2);
 		g.setColor(color);
 		g.fillOval((int) x, (int) y, (int) w, (int) h);
 		g.setColor(Color.BLACK);
