@@ -3,13 +3,12 @@ package creatures;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import controls.Mouse;
-
 public abstract class Creature
 {
 	protected String name;
 	protected int years;
 	protected Color color;
+	protected int health;
 
 	protected float speed, speedOffset, weight;
 	protected float x, y, w, h;
