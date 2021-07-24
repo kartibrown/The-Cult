@@ -1,7 +1,9 @@
 package creatures;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Point;
 
 public abstract class Creature
 {
@@ -11,7 +13,8 @@ public abstract class Creature
 	protected int health;
 
 	protected float speed, speedOffset, weight;
-	protected float x, y, w, h;
+	protected Point pos;
+	protected Dimension size;
 
 	public static enum Direction
 	{
@@ -34,10 +37,10 @@ public abstract class Creature
 			switch (dirX)
 			{
 			case RIGHT:
-				x += speed / 1.1;
+				pos.x += speed / 1.1;
 				break;
 			case LEFT:
-				x -= speed / 1.1;
+				pos.x -= speed / 1.1;
 				break;
 			case NULL:
 				break;
@@ -48,10 +51,10 @@ public abstract class Creature
 			switch (dirY)
 			{
 			case FORWARD:
-				y -= speed / 1.1;
+				pos.y -= speed / 1.1;
 				break;
 			case BACKWARD:
-				y += speed / 1.1;
+				pos.y += speed / 1.1;
 				break;
 			default:
 				break;
@@ -62,10 +65,10 @@ public abstract class Creature
 			switch (dirX)
 			{
 			case RIGHT:
-				x += speed;
+				pos.x += speed;
 				break;
 			case LEFT:
-				x -= speed;
+				pos.x -= speed;
 				break;
 			case NULL:
 				break;
@@ -76,10 +79,10 @@ public abstract class Creature
 			switch (dirY)
 			{
 			case FORWARD:
-				y -= speed;
+				pos.y -= speed;
 				break;
 			case BACKWARD:
-				y += speed;
+				pos.y += speed;
 				break;
 			default:
 				break;
@@ -91,10 +94,10 @@ public abstract class Creature
 	 * GETTERS & SETTERS
 	 */
 
-	public final void setDirectionX(final Direction dirX)
+	public final void setMoveX(final Direction dirX)
 	{ this.dirX = dirX; }
 
-	public final void setDirectionY(final Direction dirY)
+	public final void setMoveY(final Direction dirY)
 	{ this.dirY = dirY; }
 
 	public final Color getColor()
