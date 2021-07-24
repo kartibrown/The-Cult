@@ -10,7 +10,7 @@ import controls.Mouse;
 
 public class Player extends Human
 {
-	private final Point centerScreen;
+	private final Point centerContentPane;
 
 	public Player(final Dimension contentPaneSize)
 	{
@@ -21,33 +21,36 @@ public class Player extends Human
 		speed = 2;
 		speedOffset = speed / 2;
 		weight = 0;
-		w = h = 40;
-		x = contentPaneSize.width / 2 - w / 2;
-		y = contentPaneSize.height / 2 - h / 2;
 
-		centerScreen = new Point(
-				contentPaneSize.width / 2, contentPaneSize.height / 2
-		);
+		size = new Dimension(40, 40);
+
+		pos = new Point();
+		pos.x = contentPaneSize.width / 2 - size.width / 2;
+		pos.y = contentPaneSize.height / 2 - size.height / 2;
+
+		centerContentPane = new Point(contentPaneSize.width / 2, contentPaneSize.height / 2);
 	}
 
 	@Override
 	public void render(final Graphics2D g)
 	{
 		final Point mLoc = Mouse.getLocation();
-		double r = Math.atan2(centerScreen.y - mLoc.y, centerScreen.x - mLoc.x)
-				- Math.PI / 2;
+		
+		final Point centerPos = new Point(pos.x + size.width / 2, pos.y + size.height / 2);
 
-		final AffineTransform saveAT = g.getTransform();
+		final double r = Math.atan2(centerPos.y - mLoc.y, centerPos.x - mLoc.x) - Math.PI / 2;
 
-		g.rotate(r, x + w / 2, y + h / 2);
+		final AffineTransform originalAT = g.getTransform();
+
+		g.rotate(r, centerPos.x, centerPos.y);
 		g.setColor(color);
-		g.fillOval((int) x, (int) y, (int) w, (int) h);
+		g.fillOval((int) pos.x, (int) pos.y, (int) size.width, (int) size.height);
 		g.setColor(Color.BLACK);
-		g.drawLine((int) (x + w / 2), (int) y, (int) (x + w / 2), (int) y + 10);
+		g.drawLine(centerPos.x, (int) pos.y, centerPos.x, (int) pos.y + 10);
 
-		g.setTransform(saveAT);
+		g.setTransform(originalAT);
 		g.setFont(g.getFont().deriveFont(18f));
-		g.drawString(Integer.toString(health), (int) x, (int) y - 20);
+		g.drawString(Integer.toString(health), (int) pos.x, (int) pos.y - 20);
 	}
 
 	@Override
