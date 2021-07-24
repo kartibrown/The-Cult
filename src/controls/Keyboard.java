@@ -22,23 +22,23 @@ public class Keyboard implements KeyListener
 	{
 		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W)
 		{
-			player.setDirectionY(Direction.FORWARD);
+			player.setMoveY(Direction.FORWARD);
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_DOWN
 				|| e.getKeyCode() == KeyEvent.VK_S)
 		{
-			player.setDirectionY(Direction.BACKWARD);
+			player.setMoveY(Direction.BACKWARD);
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT
 				|| e.getKeyCode() == KeyEvent.VK_D)
 		{
-			player.setDirectionX(Direction.RIGHT);
+			player.setMoveX(Direction.RIGHT);
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT
 				|| e.getKeyCode() == KeyEvent.VK_A)
 		{
-			player.setDirectionX(Direction.LEFT);
+			player.setMoveX(Direction.LEFT);
 		}
 	}
 
@@ -50,7 +50,7 @@ public class Keyboard implements KeyListener
 				|| e.getKeyCode() == KeyEvent.VK_W
 				|| e.getKeyCode() == KeyEvent.VK_S)
 		{
-			player.setDirectionY(Direction.NULL);
+			player.setMoveY(Direction.NULL);
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT
@@ -58,7 +58,7 @@ public class Keyboard implements KeyListener
 				|| e.getKeyCode() == KeyEvent.VK_D
 				|| e.getKeyCode() == KeyEvent.VK_A)
 		{
-			player.setDirectionX(Direction.NULL);
+			player.setMoveX(Direction.NULL);
 		}
 	}
 }
