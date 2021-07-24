@@ -10,7 +10,6 @@ import controls.Mouse;
 
 public class Player extends Human
 {
-	private final Point centerContentPane;
 
 	public Player(final Dimension contentPaneSize)
 	{
@@ -18,7 +17,7 @@ public class Player extends Human
 		color = Color.CYAN;
 		health = 100;
 
-		speed = 2;
+		speed = 5;
 		speedOffset = speed / 2;
 		weight = 0;
 
@@ -27,8 +26,6 @@ public class Player extends Human
 		pos = new Point();
 		pos.x = contentPaneSize.width / 2 - size.width / 2;
 		pos.y = contentPaneSize.height / 2 - size.height / 2;
-
-		centerContentPane = new Point(contentPaneSize.width / 2, contentPaneSize.height / 2);
 	}
 
 	@Override

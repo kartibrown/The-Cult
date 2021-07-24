@@ -12,7 +12,7 @@ import javax.swing.Timer;
 
 import creatures.Player;
 
-public class MyPanel extends JPanel
+public class PlayPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +20,7 @@ public class MyPanel extends JPanel
 
 	private final Timer timer;
 
-	public MyPanel(final Player player)
+	public PlayPanel(final Player player)
 	{
 		this.setBackground(Color.DARK_GRAY);
 		this.setLayout(new GridBagLayout());
