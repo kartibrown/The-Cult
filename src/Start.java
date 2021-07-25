@@ -6,6 +6,7 @@ import controls.Mouse;
 import creatures.Player;
 import graphics.MainMenu;
 import graphics.MyWindow;
+import graphics.OptionPanel;
 import graphics.PlayPanel;
 
 public class Start
@@ -39,7 +40,13 @@ public class Start
 				}
 				else if (e.getActionCommand().equals("Options"))
 				{
-
+					window.remove(menu);
+					
+					final OptionPanel optionPanel = new OptionPanel();
+					optionPanel.createBackButton();
+					
+					window.add(optionPanel);
+					window.setVisible(true);
 				}
 				else
 				{
