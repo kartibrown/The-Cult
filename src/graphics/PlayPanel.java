@@ -24,8 +24,6 @@ public class PlayPanel extends JPanel
 	{
 		this.setBackground(Color.DARK_GRAY);
 		this.setLayout(new GridBagLayout());
-		this.setFocusable(true);
-		this.requestFocus();
 
 		this.player = player;
 
