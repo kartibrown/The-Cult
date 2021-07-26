@@ -7,9 +7,9 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import creatures.Creature.Direction;
-import creatures.Player;
-import graphics.PlayPanel;
+import graphics.creature.Player;
+import graphics.creature.Creature.Direction;
+import graphics.window.PlayPanel;
 
 public class Keyboard
 {

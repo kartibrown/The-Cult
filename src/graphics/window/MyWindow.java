@@ -1,4 +1,4 @@
-package graphics;
+package graphics.window;
 
 import javax.swing.JFrame;
 

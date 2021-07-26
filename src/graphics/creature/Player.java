@@ -1,4 +1,4 @@
-package creatures;
+package graphics.creature;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,7 +10,6 @@ import controls.Mouse;
 
 public class Player extends Human
 {
-
 	public Player(final Dimension contentPaneSize)
 	{
 		name = "Player";
@@ -18,11 +17,9 @@ public class Player extends Human
 		health = 100;
 
 		speed = 5;
-		weight = 0;
 
-		size = new Dimension(40, 40);
+		size.setSize(new Dimension(40, 40));
 
-		pos = new Point();
 		pos.setLocation(
 				(int) contentPaneSize.width / 2 - size.width / 2,
 				contentPaneSize.height / 2 - size.height / 2
@@ -62,7 +59,10 @@ public class Player extends Human
 		g.setTransform(originalAT);
 
 		g.setFont(g.getFont().deriveFont(18f));
-		g.drawString(Integer.toString(health), (int) pos.getX(), (int) pos.getY() - 20);
+		g.drawString(
+				Integer.toString(health), (int) pos.getX(),
+				(int) pos.getY() - 20
+		);
 	}
 
 	@Override

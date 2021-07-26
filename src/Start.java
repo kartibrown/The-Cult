@@ -3,11 +3,11 @@ import java.awt.event.ActionListener;
 
 import controls.Keyboard;
 import controls.Mouse;
-import creatures.Player;
-import graphics.MainMenu;
-import graphics.MyWindow;
-import graphics.OptionPanel;
-import graphics.PlayPanel;
+import graphics.creature.Player;
+import graphics.window.MainMenu;
+import graphics.window.MyWindow;
+import graphics.window.OptionPanel;
+import graphics.window.PlayPanel;
 
 public class Start
 {
@@ -26,7 +26,9 @@ public class Start
 				{
 					window.remove(menu);
 
-					final Player player = new Player(window.getContentPane().getSize());
+					final Player player = new Player(
+							window.getContentPane().getSize()
+					);
 					final PlayPanel playPanel = new PlayPanel(player);
 					new Keyboard(playPanel, player);
 
@@ -40,10 +42,10 @@ public class Start
 				else if (e.getActionCommand().equals("Options"))
 				{
 					window.remove(menu);
-					
+
 					final OptionPanel optionPanel = new OptionPanel();
 					optionPanel.createBackButton();
-					
+
 					window.add(optionPanel);
 					window.setVisible(true);
 				}

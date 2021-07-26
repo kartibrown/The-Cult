@@ -1,24 +1,17 @@
-package creatures;
+package graphics.creature;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
 
-public abstract class Creature
+import graphics.Entity;
+
+public abstract class Creature extends Entity
 {
-	protected String name;
-	protected int years;
-	protected Color color;
-	protected int health;
-
 	/**
 	 * Modifier for not letting creatures go faster when going diagonally
 	 */
 	protected final double speedModifier;
-	protected double speed, weight;
-	protected Point2D pos, centerPos;
-	protected Dimension size;
+
+	protected double speed;
 
 	public static enum Direction
 	{
@@ -30,6 +23,7 @@ public abstract class Creature
 	public Creature()
 	{
 		speedModifier = 1.2;
+
 		dirX = dirY = Direction.NULL;
 	}
 
@@ -124,10 +118,4 @@ public abstract class Creature
 
 	public final void setMoveY(final Direction dirY)
 	{ this.dirY = dirY; }
-
-	public final Color getColor()
-	{ return color; }
-
-	public final void setColor(final Color color)
-	{ this.color = color; }
 }

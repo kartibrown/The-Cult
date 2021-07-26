@@ -1,4 +1,4 @@
-package creatures;
+package graphics.creature;
 
 public abstract class Human extends Creature
 {

@@ -1,4 +1,4 @@
-package graphics;
+package graphics.window;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import creatures.Player;
+import graphics.creature.Player;
 
 public class PlayPanel extends JPanel
 {
