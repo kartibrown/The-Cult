@@ -19,7 +19,6 @@ public class Start
 		menu.createTitle();
 		menu.createButtons(new ActionListener()
 		{
-
 			@Override
 			public void actionPerformed(final ActionEvent e)
 			{

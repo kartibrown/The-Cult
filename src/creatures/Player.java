@@ -18,36 +18,51 @@ public class Player extends Human
 		health = 100;
 
 		speed = 5;
-		speedOffset = speed / 2;
 		weight = 0;
 
 		size = new Dimension(40, 40);
 
 		pos = new Point();
-		pos.x = contentPaneSize.width / 2 - size.width / 2;
-		pos.y = contentPaneSize.height / 2 - size.height / 2;
+		pos.setLocation(
+				(int) contentPaneSize.width / 2 - size.width / 2,
+				contentPaneSize.height / 2 - size.height / 2
+		);
 	}
 
 	@Override
 	public void render(final Graphics2D g)
 	{
 		final Point mLoc = Mouse.getLocation();
-		
-		final Point centerPos = new Point(pos.x + size.width / 2, pos.y + size.height / 2);
 
-		final double r = Math.atan2(centerPos.y - mLoc.y, centerPos.x - mLoc.x) - Math.PI / 2;
+		centerPos = new Point(
+				(int) pos.getX() + size.width / 2,
+				(int) pos.getY() + size.height / 2
+		);
+
+		final double r = Math
+				.atan2(centerPos.getY() - mLoc.y, centerPos.getX() - mLoc.x)
+				- Math.PI / 2;
 
 		final AffineTransform originalAT = g.getTransform();
 
-		g.rotate(r, centerPos.x, centerPos.y);
+		g.rotate(r, centerPos.getX(), centerPos.getY());
+
 		g.setColor(color);
-		g.fillOval((int) pos.x, (int) pos.y, (int) size.width, (int) size.height);
+		g.fillOval(
+				(int) pos.getX(), (int) pos.getY(), (int) size.width,
+				(int) size.height
+		);
+
 		g.setColor(Color.BLACK);
-		g.drawLine(centerPos.x, (int) pos.y, centerPos.x, (int) pos.y + 10);
+		g.drawLine(
+				(int) centerPos.getX(), (int) pos.getY(),
+				(int) centerPos.getX(), (int) pos.getY() + 10
+		);
 
 		g.setTransform(originalAT);
+
 		g.setFont(g.getFont().deriveFont(18f));
-		g.drawString(Integer.toString(health), (int) pos.x, (int) pos.y - 20);
+		g.drawString(Integer.toString(health), (int) pos.getX(), (int) pos.getY() - 20);
 	}
 
 	@Override

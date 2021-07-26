@@ -3,7 +3,7 @@ package creatures;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Point;
+import java.awt.geom.Point2D;
 
 public abstract class Creature
 {
@@ -12,8 +12,9 @@ public abstract class Creature
 	protected Color color;
 	protected int health;
 
-	protected float speed, speedOffset, weight;
-	protected Point pos;
+	protected final double speedModifier;
+	protected double speed, weight;
+	protected Point2D pos, centerPos;
 	protected Dimension size;
 
 	public static enum Direction
@@ -24,7 +25,10 @@ public abstract class Creature
 	protected Direction dirX, dirY;
 
 	public Creature()
-	{ dirX = dirY = Direction.NULL; }
+	{
+		speedModifier = 1.2; // Prevents creatures from going faster diagonally
+		dirX = dirY = Direction.NULL;
+	}
 
 	public abstract void render(final Graphics2D g);
 
@@ -37,10 +41,10 @@ public abstract class Creature
 			switch (dirX)
 			{
 			case RIGHT:
-				pos.x += speed / 1.1;
+				pos.setLocation(pos.getX() + speed / speedModifier, pos.getY());
 				break;
 			case LEFT:
-				pos.x -= speed / 1.1;
+				pos.setLocation(pos.getX() - speed / speedModifier, pos.getY());
 				break;
 			case NULL:
 				break;
@@ -51,10 +55,10 @@ public abstract class Creature
 			switch (dirY)
 			{
 			case FORWARD:
-				pos.y -= speed / 1.1;
+				pos.setLocation(pos.getX(), pos.getY() - speed / 1.1);
 				break;
 			case BACKWARD:
-				pos.y += speed / 1.1;
+				pos.setLocation(pos.getX(), pos.getY() + speed / 1.1);
 				break;
 			default:
 				break;
@@ -65,10 +69,10 @@ public abstract class Creature
 			switch (dirX)
 			{
 			case RIGHT:
-				pos.x += speed;
+				pos.setLocation(pos.getX() + speed, pos.getY());
 				break;
 			case LEFT:
-				pos.x -= speed;
+				pos.setLocation(pos.getX() - speed, pos.getY());
 				break;
 			case NULL:
 				break;
@@ -79,10 +83,10 @@ public abstract class Creature
 			switch (dirY)
 			{
 			case FORWARD:
-				pos.y -= speed;
+				pos.setLocation(pos.getX(), pos.getY() - speed);
 				break;
 			case BACKWARD:
-				pos.y += speed;
+				pos.setLocation(pos.getX(), pos.getY() + speed);
 				break;
 			default:
 				break;
