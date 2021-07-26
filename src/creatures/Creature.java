@@ -12,6 +12,9 @@ public abstract class Creature
 	protected Color color;
 	protected int health;
 
+	/**
+	 * Modifier for not letting creatures go faster when going diagonally
+	 */
 	protected final double speedModifier;
 	protected double speed, weight;
 	protected Point2D pos, centerPos;
@@ -26,7 +29,7 @@ public abstract class Creature
 
 	public Creature()
 	{
-		speedModifier = 1.2; // Prevents creatures from going faster diagonally
+		speedModifier = 1.2;
 		dirX = dirY = Direction.NULL;
 	}
 
@@ -38,59 +41,77 @@ public abstract class Creature
 	{
 		if (!dirX.equals(Direction.NULL) && !dirY.equals(Direction.NULL))
 		{
-			switch (dirX)
-			{
-			case RIGHT:
-				pos.setLocation(pos.getX() + speed / speedModifier, pos.getY());
-				break;
-			case LEFT:
-				pos.setLocation(pos.getX() - speed / speedModifier, pos.getY());
-				break;
-			case NULL:
-				break;
-			default:
-				break;
-			}
-
-			switch (dirY)
-			{
-			case FORWARD:
-				pos.setLocation(pos.getX(), pos.getY() - speed / 1.1);
-				break;
-			case BACKWARD:
-				pos.setLocation(pos.getX(), pos.getY() + speed / 1.1);
-				break;
-			default:
-				break;
-			}
+			moveDiagonallyX();
+			moveDiagonallyY();
 		}
 		else
 		{
-			switch (dirX)
-			{
-			case RIGHT:
-				pos.setLocation(pos.getX() + speed, pos.getY());
-				break;
-			case LEFT:
-				pos.setLocation(pos.getX() - speed, pos.getY());
-				break;
-			case NULL:
-				break;
-			default:
-				break;
-			}
+			moveX();
+			moveY();
+		}
+	}
 
-			switch (dirY)
-			{
-			case FORWARD:
-				pos.setLocation(pos.getX(), pos.getY() - speed);
-				break;
-			case BACKWARD:
-				pos.setLocation(pos.getX(), pos.getY() + speed);
-				break;
-			default:
-				break;
-			}
+	private void moveY()
+	{
+		switch (dirY)
+		{
+		case FORWARD:
+			pos.setLocation(pos.getX(), pos.getY() - speed);
+			break;
+		case BACKWARD:
+			pos.setLocation(pos.getX(), pos.getY() + speed);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void moveX()
+	{
+		switch (dirX)
+		{
+		case RIGHT:
+			pos.setLocation(pos.getX() + speed, pos.getY());
+			break;
+		case LEFT:
+			pos.setLocation(pos.getX() - speed, pos.getY());
+			break;
+		case NULL:
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void moveDiagonallyY()
+	{
+		switch (dirY)
+		{
+		case FORWARD:
+			pos.setLocation(pos.getX(), pos.getY() - speed / speedModifier);
+			break;
+		case BACKWARD:
+			pos.setLocation(pos.getX(), pos.getY() + speed / speedModifier);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void moveDiagonallyX()
+	{
+		switch (dirX)
+		{
+		case RIGHT:
+			pos.setLocation(pos.getX() + speed / speedModifier, pos.getY());
+			break;
+		case LEFT:
+			pos.setLocation(pos.getX() - speed / speedModifier, pos.getY());
+			break;
+		case NULL:
+			break;
+		default:
+			break;
 		}
 	}
 

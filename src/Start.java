@@ -11,7 +11,7 @@ import graphics.PlayPanel;
 
 public class Start
 {
-	public static void main(final String[] args)
+	public static final void main(final String[] args)
 	{
 		final MyWindow window = new MyWindow("The Cult");
 
