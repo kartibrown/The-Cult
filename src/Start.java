@@ -1,8 +1,10 @@
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import controls.Keyboard;
 import controls.Mouse;
+import graphics.World;
 import graphics.creature.Player;
 import graphics.window.MainMenu;
 import graphics.window.MyWindow;
@@ -26,10 +28,16 @@ public class Start
 				{
 					window.remove(menu);
 
-					final Player player = new Player(
-							window.getContentPane().getSize()
+					final Dimension contentPaneSize = window.getContentPane()
+							.getSize();
+
+					final Player player = new Player(contentPaneSize);
+					final World world = new World(contentPaneSize);
+
+					final PlayPanel playPanel = new PlayPanel(
+							player, world, contentPaneSize
 					);
-					final PlayPanel playPanel = new PlayPanel(player);
+					
 					new Keyboard(playPanel, player);
 
 					final Mouse mouse = new Mouse();
