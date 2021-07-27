@@ -1,7 +1,5 @@
 package graphics.creature;
 
-import java.awt.Graphics2D;
-
 import graphics.Entity;
 
 public abstract class Creature extends Entity
@@ -26,10 +24,6 @@ public abstract class Creature extends Entity
 
 		dirX = dirY = Direction.NULL;
 	}
-
-	public abstract void render(final Graphics2D g);
-
-	public abstract void physics();
 
 	public void move()
 	{
