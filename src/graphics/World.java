@@ -27,6 +27,7 @@ public class World extends JPanel
 			final int x = rand.nextInt(contentPaneSize.width);
 			final int y = rand.nextInt(contentPaneSize.height);
 			final int r = rand.nextInt(20);
+			
 			trees[i] = new Tree(x, y, r);
 		}
 	}

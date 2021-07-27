@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.geom.AffineTransform;
 
 import controls.Mouse;
 
@@ -23,7 +22,7 @@ public class Player extends Human
 		size.setSize(new Dimension(40, 40));
 
 		pos.setLocation(
-				(int) contentPaneSize.width / 2 - size.width / 2,
+				contentPaneSize.width / 2 - size.width / 2,
 				contentPaneSize.height / 2 - size.height / 2
 		);
 
@@ -47,7 +46,13 @@ public class Player extends Human
 		final double calX = centerPos.getX() + cameraX - mLoc.x;
 		final double rad = Math.atan2(calY, calX) - Math.PI / 2;
 
-		final AffineTransform originalAT = g.getTransform();
+		// final AffineTransform originalAT = g.getTransform();
+
+		g.setFont(g.getFont().deriveFont(16f));
+		g.drawString(
+				Integer.toString(health), (int) pos.getX(),
+				(int) pos.getY() - 20
+		);
 
 		g.rotate(rad, centerPos.getX(), centerPos.getY());
 
@@ -63,13 +68,7 @@ public class Player extends Human
 				(int) centerPos.getX(), (int) pos.getY() + 10
 		);
 
-		g.setTransform(originalAT);
-
-		g.setFont(g.getFont().deriveFont(18f));
-		g.drawString(
-				Integer.toString(health), (int) pos.getX(),
-				(int) pos.getY() - 20
-		);
+		// g.setTransform(originalAT);
 	}
 
 	@Override

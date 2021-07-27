@@ -1,6 +1,5 @@
 package graphics.window;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -30,8 +29,7 @@ public class PlayPanel extends JPanel
 			final Dimension contentPaneSize
 	)
 	{
-		this.setBackground(Color.DARK_GRAY);
-		this.setOpaque(true);
+		this.setOpaque(false);
 		this.setLayout(new GridBagLayout());
 
 		this.player = player;

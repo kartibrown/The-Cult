@@ -20,8 +20,6 @@ public class OptionPanel extends JPanel
 		this.setBackground(Color.DARK_GRAY);
 		this.setLayout(new BorderLayout());
 
-		final GridBagConstraints gbc = new GridBagConstraints();
-
 		southPanel = new JPanel(new GridBagLayout());
 		southPanel.setOpaque(false);
 	}
