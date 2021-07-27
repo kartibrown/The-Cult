@@ -10,6 +10,8 @@ import controls.Mouse;
 
 public class Player extends Human
 {
+	private int cameraX, cameraY;
+
 	public Player(final Dimension contentPaneSize)
 	{
 		name = "Player";
@@ -24,6 +26,11 @@ public class Player extends Human
 				(int) contentPaneSize.width / 2 - size.width / 2,
 				contentPaneSize.height / 2 - size.height / 2
 		);
+
+		centerPos = new Point(
+				(int) pos.getX() + size.width / 2,
+				(int) pos.getY() + size.height / 2
+		);
 	}
 
 	@Override
@@ -36,13 +43,13 @@ public class Player extends Human
 				(int) pos.getY() + size.height / 2
 		);
 
-		final double r = Math
-				.atan2(centerPos.getY() - mLoc.y, centerPos.getX() - mLoc.x)
-				- Math.PI / 2;
+		final double calY = centerPos.getY() + cameraY - mLoc.y;
+		final double calX = centerPos.getX() + cameraX - mLoc.x;
+		final double rad = Math.atan2(calY, calX) - Math.PI / 2;
 
 		final AffineTransform originalAT = g.getTransform();
 
-		g.rotate(r, centerPos.getX(), centerPos.getY());
+		g.rotate(rad, centerPos.getX(), centerPos.getY());
 
 		g.setColor(color);
 		g.fillOval(
@@ -68,4 +75,10 @@ public class Player extends Human
 	@Override
 	public void physics()
 	{}
+
+	public void setCameraLocation(final int cameraX, final int cameraY)
+	{
+		this.cameraX = cameraX;
+		this.cameraY = cameraY;
+	}
 }
