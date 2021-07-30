@@ -24,10 +24,10 @@ public class World extends JPanel
 
 		for (int i = 0; i < 5; i++)
 		{
-			final int x = rand.nextInt(contentPaneSize.width);
-			final int y = rand.nextInt(contentPaneSize.height);
+			final int x = rand.nextInt(contentPaneSize.width + 20);
+			final int y = rand.nextInt(contentPaneSize.height + 20);
 			final int r = rand.nextInt(20);
-			
+
 			trees[i] = new Tree(x, y, r);
 		}
 	}
