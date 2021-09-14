@@ -1,15 +1,9 @@
 package graphics.creature;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import controls.Mouse;
@@ -18,12 +12,14 @@ public class Player extends Human
 {
 	private int cameraX, cameraY;
 
-	private final BufferedImage sword;
+	// private final Image sword;
 
 	public Player(final Dimension contentPaneSize)
 	{
 		name = "Player";
-		color = Color.CYAN;
+		texture = new ImageIcon(
+				System.getProperty("user.dir") + "\\data\\player-idle.gif"
+		).getImage().getScaledInstance(80, 80, 40);
 		health = 100;
 
 		speed = 5;
@@ -40,18 +36,9 @@ public class Player extends Human
 				(int) pos.getY() + size.height / 2
 		);
 
-		final ImageIcon swordImage = new ImageIcon(
-				System.getProperty("user.dir") + "\\data\\sword.png"
-		);
-
-		final Image tempImage = swordImage.getImage();
-
-		sword = new BufferedImage(
-				swordImage.getIconWidth(), swordImage.getIconHeight(),
-				BufferedImage.TYPE_INT_ARGB
-		);
-		sword.getGraphics().drawImage(tempImage, 0, 0, null);
-		tempImage.flush();
+		// sword = new ImageIcon(
+		// System.getProperty("user.dir") + "\\data\\sword.png"
+		// ).getImage();
 	}
 
 	@Override
@@ -66,11 +53,11 @@ public class Player extends Human
 
 		final double calY = centerPos.getY() + cameraY - mLoc.y;
 		final double calX = centerPos.getX() + cameraX - mLoc.x;
-		final double rad = Math.atan2(calY, calX) - Math.PI / 2;
+		final double rad = Math.atan2(calY, calX) - Math.PI / 2 - 1.8;
 
 		// final AffineTransform originalAT = g.getTransform();
 
-		g.drawImage(sword, (int) pos.getX(), (int) pos.getY() - 30, null);
+		// g.drawImage(sword, (int) pos.getX(), (int) pos.getY() - 30, null);
 
 		g.setFont(g.getFont().deriveFont(16f));
 		g.drawString(
@@ -80,16 +67,9 @@ public class Player extends Human
 
 		g.rotate(rad, centerPos.getX(), centerPos.getY());
 
-		g.setColor(color);
-		g.fillOval(
-				(int) pos.getX(), (int) pos.getY(), (int) size.width,
-				(int) size.height
-		);
-
-		g.setColor(Color.BLACK);
-		g.drawLine(
-				(int) centerPos.getX(), (int) pos.getY(),
-				(int) centerPos.getX(), (int) pos.getY() + 10
+		g.drawImage(
+				texture, (int) pos.getX() - texture.getWidth(null) / 2,
+				(int) pos.getY() - texture.getHeight(null) / 2, null
 		);
 
 		// g.setTransform(originalAT);

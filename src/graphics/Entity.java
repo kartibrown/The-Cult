@@ -1,15 +1,15 @@
 package graphics;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
 public abstract class Entity
 {
 	protected String name;
-	protected Color color;
+	protected Image texture;
 	protected int health;
 
 	protected final Point2D pos;
@@ -47,10 +47,4 @@ public abstract class Entity
 
 	public final double getCenterY()
 	{ return centerPos.getY(); }
-
-	public final Color getColor()
-	{ return color; }
-
-	public final void setColor(final Color color)
-	{ this.color = color; }
 }

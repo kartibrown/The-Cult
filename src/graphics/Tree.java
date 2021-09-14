@@ -1,48 +1,30 @@
 package graphics;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Image;
 
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class Tree extends Plant
 {
-	BufferedImage leaf1;
+	private final Image leaf1;
 
 	public Tree(final int x, final int y, final int r)
 	{
 		pos.setLocation(x, y);
 		size.setSize(r, r);
-		color = new Color(20, 255, 20);
+		
+		texture = new ImageIcon().getImage();
 
-		try
-		{
-			leaf1 = ImageIO
-					.read(
-							new File(
-									System.getProperty("user.dir")
-											+ "\\data\\leaf.png"
-							)
-					);
-		}
-		catch (final IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		leaf1 = new ImageIcon(
+				System.getProperty("user.dir") + "\\data\\leaf.png"
+		).getImage().getScaledInstance(20, 20, 10);
+
 	}
 
 	@Override
 	public void render(final Graphics2D g)
 	{
-		g.setColor(color);
-		g.fillOval(
-				(int) pos.getX(), (int) pos.getY(), (int) size.getWidth(),
-				(int) size.getHeight()
-		);
 
 		g.drawImage(leaf1, (int) pos.getX(), (int) pos.getY(), null);
 	}
