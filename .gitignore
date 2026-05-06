@@ -1,4 +1,6 @@
+bin/
 .settings/
+.DS_Store
 data/
 
 .classpath
